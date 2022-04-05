@@ -3,7 +3,7 @@ const Header = ( ) => {
 
     return (
     <header>
-        Header
+        Истаграмм ваших котиков
     </header>
     
     )}
