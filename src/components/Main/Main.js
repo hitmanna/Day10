@@ -1,17 +1,25 @@
-import Insta from "../Insta/Insta";
+import TodoList from "../TodoList/TodoList"
 
-const Main = (addNewPost) => {
+const Main = ({todos, deleteTodo, completedTodo}) => {
 
-console.log(addNewPost)
 
-    return (
-
-        <div>
-            < Insta addNewPost = {addNewPost} />
-        </div>
-    )
+	return (
+		<div>
+			<TodoList completedTodo={completedTodo} deleteTodo={deleteTodo} todos={todos} />	
+		</div>
+	)
 }
 
+function AnotherComponentInMain () {
+	return (
+		<div>
+			AnotherComponentInMain
+		</div>
+	)
+}
+
+export default Main
+
 export {
-    Main
+	AnotherComponentInMain
 }

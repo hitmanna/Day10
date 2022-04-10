@@ -1,34 +1,65 @@
-import { useState } from 'react';
-import './App.css';
-import Form from './components/Form/Form';
-import Hat from './components/Hat/Hat';
-import Header from './components/Header/Header';
-import Insta from './components/Insta/Insta';
-import { Main } from './components/Main/Main';
+import "./App.css";
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
+import Main from "./components/Main/Main";
+import { useState } from "react";
+import { nanoid } from 'nanoid'
 
-
+const history = []
 
 function App() {
+  const [todos, setTodos] = useState([]);
 
-const [posts, setPosts] = useState([])
+  const addNewTodo = (title, text, picture, tag ) => {
+    setTodos((prev) => [
+      ...prev,
+      {
+        id: nanoid(),
+        title,
+        text,
+        picture,
+        tag,
+        completed: false,
+      },
+    ]);
+  };
 
-const addNewPost = () => {
-  setPosts(prev => [ ...prev, {
-    id: Date.now(),
-    title:'',
-    text:'',
-    picture:'',
-    teg:''
 
-  }])
+  const deleteTodo = (id) => {
+    setTodos((prev) => prev.filter((todo) => todo.id !== id));
+  };
+
+  const completedTodo = (id) => {
+    setTodos((prev) =>
+      prev.map((todo) => {
+        if (todo.id === id) {
+          return {
+            ...todo,
+            completed: !todo.completed,
+          };
+        }
+        return todo;
+      })
+    );
+  };
+
+  const clearTodos = () => {
+    history.push(todos)
+    setTodos([])
   }
 
+  const returnToPrevState = () => {
+    setTodos(history.pop())
+  }
+
+  console.log(todos)
+
   return (
-    <div className="container">
-      < Header/>
-      < Hat />
-      < Form />
-      < Main addNewPost = {addNewPost} />
+    <div className="container py-5">
+      <Header addNewTodo={addNewTodo} />
+      <hr />
+      <Main completedTodo={completedTodo} deleteTodo={deleteTodo} todos={todos} />
+      <Footer returnToPrevState={returnToPrevState} clearTodos={clearTodos} />
     </div>
   );
 }
