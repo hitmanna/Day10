@@ -1,17 +1,7 @@
-import Form from '../Form/Form'
-import styles from './styles.module.css'
+import Form from "./Form/Form";
 
-const Header = ({addNewTodo}) => {
+const Header = () => {
+  return <Form />;
+};
 
-
-
-
-	return (
-		<header>
-            <h1>Инстаграмм ваших котиков</h1>
-				<Form addNewTodo={addNewTodo} />
-		</header>
-	)
-}
-
-export default Header
+export default Header;

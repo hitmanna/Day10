@@ -1,25 +1,11 @@
-import TodoList from "../TodoList/TodoList"
+import TodoList from "./TodoList/TodoList"
 
-const Main = ({todos, deleteTodo, completedTodo}) => {
+const Main = () => {
 
 
-	return (
-		<div>
-			<TodoList completedTodo={completedTodo} deleteTodo={deleteTodo} todos={todos} />	
-		</div>
-	)
-}
 
-function AnotherComponentInMain () {
-	return (
-		<div>
-			AnotherComponentInMain
-		</div>
-	)
+
+	return <TodoList />
 }
 
 export default Main
-
-export {
-	AnotherComponentInMain
-}
