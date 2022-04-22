@@ -8,7 +8,9 @@ const TodoList = () => {
 
 
 	return (
-		<ul className="list-group">
+<>
+		
+		<ul className="list-group ">
 			{todos.map((todo, index) => (
 				<TodoItem key={todo.id} id={todo.id} index={index} completed={todo.completed} title={todo.title}
         text={todo.text}
@@ -16,6 +18,7 @@ const TodoList = () => {
         tag={todo.tag} />
 			))}
 		</ul>
+		</>
 	)
 }
 
