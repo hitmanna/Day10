@@ -14,6 +14,12 @@ const Navbar = () => {
           <Link className="navbar-brand" to="/Something" aria-current="page">Что-то еще</Link>
         </li>
         <li className="nav-item">
+          <Link className="navbar-brand" to="/Registration" aria-current="page">Регистрация</Link>
+        </li>
+        <li className="nav-item">
+          <Link className="navbar-brand" to="/SignIn" aria-current="page">Авторизация</Link>
+        </li>
+        <li className="nav-item">
           <Link className="navbar-brand" to="/">Посмотреть посты</Link>
         </li>
         

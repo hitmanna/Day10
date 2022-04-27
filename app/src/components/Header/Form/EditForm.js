@@ -1,21 +1,20 @@
-import { useContext, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useNavigate} from "react-router-dom";
 import { TodoListContext } from "../../../contexts/TodoListContext";
 
+function EditForm({closeModal, id, title = '', text ='', picture = '', tag = ''}) {
 
+    const [title1, setTitle] = useState(title)
+    const [text1, setText] = useState(text)
+    const [picture1, setPicture]=useState(picture)
+    const [tag1, setTag]=useState(tag)
+    const [id1]=useState(id)
 
-const Form = () => {
-  const [title, setTitle] = useState("");
-  
-  const [text, setText ] = useState("")
+    const { completedTodo } = useContext(TodoListContext);
 
-  const [picture, setPicture ] = useState("")
+    useEffect(() => {}, [])
 
-  const [tag, setTag ] = useState("")
-
-  const { createTodo } = useContext(TodoListContext);
-
-  const changeHandler = (e) => setTitle(e.target.value);
+    const changeHandler = (e) => setTitle(e.target.value);
 
   const changeText = (e) => {    setText(e.target.value)
   }
@@ -26,19 +25,21 @@ const Form = () => {
   const changeTag = (e) => {    setTag(e.target.value)
   }
 
+  
   const navigate = useNavigate();
 
+  
   const submitHandler = (e) => {
     e.preventDefault();
    
 
-    const titleTrim = title.trim();
-    let newText = text.trim()
-    let newPicture = picture.trim()
-    let newTag = tag.trim()
+    const titleTrim = title1.trim();
+    let newText = text1.trim()
+    let newPicture = picture1.trim()
+    let newTag = tag1.trim()
 
     if (titleTrim) {
-      createTodo(titleTrim, newText, newPicture, newTag);
+        completedTodo(id1,titleTrim, newText, newPicture, newTag);
       setTitle('') 
       setText('') 
       setPicture('') 
@@ -49,8 +50,8 @@ const Form = () => {
     
   };
 
-  return (
-    <form onSubmit={submitHandler} className="d-flex flex-column align-items-center">
+return (
+<form onSubmit={submitHandler} className="d-flex flex-column align-items-center">
     <div className="mb-3">
     <label for="exampleInputEmail1" className="form-label">Дайте название вашему посту</label>  
       <input
@@ -60,7 +61,7 @@ const Form = () => {
         name="title"
         aria-describedby="emailHelp"
         placeholder="Заголовок"
-        value={title}
+        value={title1}
       />
     </div>
 
@@ -73,7 +74,7 @@ const Form = () => {
         name="text"
         aria-describedby="emailHelp"
         placeholder="Текст поста"
-        value={text}
+        value={text1}
       />
     </div>
 
@@ -86,7 +87,7 @@ const Form = () => {
         name="picture"
         aria-describedby="emailHelp"
         placeholder="Ссылка на картинку"
-        value={picture}
+        value={picture1}
       />
     </div>
 
@@ -99,15 +100,24 @@ const Form = () => {
         name="tag"
         aria-describedby="emailHelp"
         placeholder="тег"
-        value={tag}
+        value={tag1}
       />
     </div>
 
     <button type="submit" className="btn btn-primary">
       Отправить
     </button>
+    <button onClick={closeModal} className="btn btn-warning">
+      Закрыть
+    </button>
   </form>
-  );
-};
 
-export default Form;
+
+
+
+)
+}
+
+
+export default EditForm
+

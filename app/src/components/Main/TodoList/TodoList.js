@@ -16,7 +16,7 @@ const TodoList = () => {
         text={todo.text}
         picture={todo.picture}
         tag={todo.tag} />
-			))}
+			)).reverse()}
 		</ul>
 		</>
 	)

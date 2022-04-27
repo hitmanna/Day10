@@ -19,13 +19,16 @@ const useTodos = () => {
     setTodos((prev) => [...prev, newTodo]);
   };
 
-  const completedTodo = (id) => {
+  const completedTodo = (id1, title1, text1, picture1, tag1) => {
     setTodos((prev) =>
       prev.map((todo) => {
-        if (todo.id === id) {
+        if (todo.id == id1) {
           return {
             ...todo,
-            completed: !todo.completed,
+            title: title1,
+            text: text1,
+            picture:  picture1,
+            tag: tag1,
           };
         }
         return todo;
@@ -33,7 +36,7 @@ const useTodos = () => {
     );
   };
 
-  
+    
   const deleteTodo = (id) => {
     setTodos((prev) => prev.filter((todo) => todo.id !== id));
   };

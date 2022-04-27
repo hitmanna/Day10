@@ -1,5 +1,6 @@
 import { useContext, useState } from "react"
 import { TodoListContext } from "../../../../contexts/TodoListContext"
+import EditForm from "../../../Header/Form/EditForm"
 import Form from "../../../Header/Form/Form"
 import Modal from "../../../Modal/Modal"
 
@@ -16,6 +17,10 @@ const TodoItem = ({id, title, text, picture, tag, index,}) => {
 		setViewModal(true)
 	  }
 
+	  const closeModal = () => {
+		setViewModal(false)
+	  }
+ 
 	return (
 		<div>
 		<div>
@@ -45,10 +50,11 @@ const TodoItem = ({id, title, text, picture, tag, index,}) => {
 			 < Modal 
 			state = {viewModal}
           >  
-		  Редактирование поста   < Form /> 	</Modal> 
+		  Редактирование поста   < EditForm closeModal={closeModal} id={id} title={title} text = {text} picture = {picture} tag={tag} /> 	</Modal> 
 		</div>
 		</div>
 	)
 }
 
 export default TodoItem
+
